@@ -4,7 +4,7 @@
 # about: Limits member-facing profiles to identity and contact information.
 # version: 0.1
 # authors: Off-Label
-# url: https://github.com/whisper-health/off-label-minimal-profiles
+# url: https://github.com/whisper-health/off-label-no-data-export/tree/minimal-profiles
 
 after_initialize do
   module ::OffLabelMinimalProfiles

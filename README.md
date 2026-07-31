@@ -49,6 +49,18 @@ Restart the Rails server after adding or changing the plugin.
 
 ## Production
 
-This directory is the source of truth. Mirror it to
-`whisper-health/off-label-minimal-profiles`, add that repository to the
-container's plugin clone list, and rebuild the Discourse container.
+This directory is the source of truth. It is mirrored to the
+`minimal-profiles` branch of `whisper-health/off-label-no-data-export`; the
+branch has this plugin at repository root, satisfying Discourse's plugin clone
+layout without requiring another repository.
+
+From the monorepo root, after committing:
+
+```bash
+git push plugin-no-export \
+  "$(git subtree split --prefix=discourse/plugins/off-label-minimal-profiles HEAD)":refs/heads/minimal-profiles
+```
+
+The production container clones that branch into an explicitly named
+`off-label-minimal-profiles` directory. Plugin changes require
+`./launcher rebuild app`, not `restart`.
