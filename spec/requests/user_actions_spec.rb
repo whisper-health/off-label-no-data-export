@@ -13,12 +13,12 @@ RSpec.describe UserActionsController do
     expect(response.status).to eq(404)
   end
 
-  it "does not expose a member's own activity stream" do
+  it "keeps a member's own activity stream available" do
     sign_in(member)
 
     get "/user_actions.json", params: { username: member.username }
 
-    expect(response.status).to eq(404)
+    expect(response.status).to eq(200)
   end
 
   it "preserves staff access to member activity" do

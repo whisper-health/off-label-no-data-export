@@ -2,7 +2,7 @@
 
 # name: off-label-minimal-profiles
 # about: Limits member-facing profiles to identity and contact information.
-# version: 0.1
+# version: 0.2
 # authors: Off-Label
 # url: https://github.com/whisper-health/off-label-no-data-export/tree/minimal-profiles
 
@@ -211,7 +211,11 @@ after_initialize do
         is_staff?
       end
 
+      # A member's own stream stays reachable: core's sidebar "My Posts" link
+      # and the activity section's self-only pages depend on it, and it holds
+      # nothing about anyone but the requester.
       def can_see_user_actions?(user, action_types)
+        return true if !anonymous? && is_me?(user)
         return super if is_staff?
 
         false

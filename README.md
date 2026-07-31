@@ -12,12 +12,16 @@ Non-staff responses omit:
 - time read, days visited, topics viewed, posts read, and post/topic counts
 - likes and the summary page's top topics, replies, links, categories, and
   member-to-member interaction lists
-- user activity streams reached through `/user_actions.json`
+- another member's activity streams reached through `/user_actions.json`
 - the same behavioral statistics when requested through the user directory,
   plus last-seen, trust-level, and group/flair metadata in group member APIs
 
-The rule also applies when a member views their own profile. Staff retain the
-data and activity endpoints required for moderation.
+The serializer rules also apply when a member views their own profile, so
+everyone's profile has the same quiet shape. A member's own activity stream
+is the exception: it holds nothing about anyone but the requester, and core's
+sidebar "My Posts" / "My Drafts" links and the self-only drafts, pending,
+bookmarks, and read pages depend on it, so it stays available to its owner.
+Staff retain the data and activity endpoints required for moderation.
 
 Identity and contact information remain available: avatar, display name,
 username, title, bio, website, location, configured public user fields, and
