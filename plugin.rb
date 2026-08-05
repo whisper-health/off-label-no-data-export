@@ -51,6 +51,10 @@ after_initialize do
         linkedin_url || super
       end
 
+      def website_name
+        linkedin_url.present? ? LINKEDIN_FIELD_NAME : super
+      end
+
       def user_fields
         return super if scope&.is_staff?
 

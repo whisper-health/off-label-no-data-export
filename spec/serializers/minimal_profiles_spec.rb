@@ -88,7 +88,7 @@ RSpec.describe UserSerializer do
     json = serialized_user(member)
 
     expect(json[:website]).to eq("https://linkedin.com/in/member")
-    expect(json[:website_name]).to eq("linkedin.com/in/member")
+    expect(json[:website_name]).to eq("LinkedIn")
     expect(json[:user_fields]).to eq(linkedin.id.to_s => "linkedin.com/in/member")
   end
 
